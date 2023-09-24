@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login/Signup Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="login-form">
+            <label for="login-username">Username:</label>
+            <input type="text" id="login-username" name="login-username" required>
+            <label for="login-password">Password:</label>
+            <input type="password" id="login-password" name="login-password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="#" id="toggle-signup">Sign up</a></p>
+    </div>
+
+    <div class="container" style="display: none;" id="signup-container">
+        <h2>Sign up</h2>
+        <form id="signup-form">
+            <label for="signup-username">Username:</label>
+            <input type="text" id="signup-username" name="signup-username" required>
+            <label for="signup-password">Password:</label>
+            <input type="password" id="signup-password" name="signup-password" required>
+            <button type="submit">Sign up</button>
+        </form>
+        <p>Already have an account? <a href="#" id="toggle-login">Login</a></p>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById("login-form");
+        const signupForm = document.getElementById("signup-form");
+        const signupContainer = document.getElementById("signup-container");
+        const toggleSignup = document.getElementById("toggle-signup");
+        const toggleLogin = document.getElementById("toggle-login");
+        const users = [];
+
+        toggleSignup.addEventListener("click", function () {
+            loginForm.style.display = "none";
+            signupContainer.style.display = "block";
+        });
+
+        toggleLogin.addEventListener("click", function () {
+            loginForm.style.display = "block";
+            signupContainer.style.display = "none";
+        });
+
+        signupForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const username = document.getElementById("signup-username").value;
+            const password = document.getElementById("signup-password").value;
+
+            // Simulate adding the user to a database
+            users.push({ username, password });
+
+            alert("Account created successfully. Please login.");
+            toggleLogin.click(); // Switch to the login form
+        });
+
+        loginForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const username = document.getElementById("login-username").value;
+            const password = document.getElementById("login-password").value;
+
+            // Simulate checking credentials in the database
+            const user = users.find((u) => u.username === username && u.password === password);
+
+            if (user) {
+                alert("Login successful!");
+                // Redirect or perform further actions here
+            } else {
+                alert("Invalid username or password. Please try again.");
+            }
+        });
+
+        loginForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const username = document.getElementById("login-username").value;
+        const password = document.getElementById("login-password").value;
+
+        // Simulate checking credentials in the database
+        const user = users.find((u) => u.username === username && u.password === password);
+
+        if (user) {
+            alert("Login successful!");
+            // Redirect to index.html
+            window.location.href = "index.html";
+        } else {
+            alert("Invalid username or password. Please try again.");
+        }
+    });
+    </script>
+</body>
+</html>
