@@ -214,7 +214,7 @@
                 <!-- Cart items will be dynamically added here using JavaScript -->
             </div>
             <div class="cart-total">
-                <p>Total: $<span id="cart-total">0.00</span></p>
+                <p>Total: ₹<span id="cart-total">0.00</span></p>
                 <button id="checkout-button">Checkout</button>
             </div>
         </div>
@@ -315,7 +315,7 @@
             // Handle checkout button click
             checkoutButton.addEventListener("click", () => {
                 if (cart.length > 0) {
-                    alert("Checkout complete! Total: $" + cartTotal.textContent);
+                    alert("Checkout complete! Total: ₹" + cartTotal.textContent);
                     cart = [];
                     updateCartDisplay();
                 } else {
